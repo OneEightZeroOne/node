@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<video id="camera" autoplay></video>
+		<script>
+			/*window.navigator.mediaDevices.getUserMedia({
+				video: true
+			}).then((stream) => {
+				document.getElementById("camera").src = URL.createObjectURL(stream);
+			}).catch(() => {
+				console.log("fail")
+			})*/
+			window.navigator.geolocation.getCurrentPosition(function(coords){
+				console.log(coords)
+			},function(err){
+				console.log(err)
+			})
+		</script>
+	</body>
+
+</html>

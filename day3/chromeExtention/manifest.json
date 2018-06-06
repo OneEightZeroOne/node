@@ -1,0 +1,30 @@
+{
+	"name": "恶意的木马的插件",
+	"manifest_version": 2,
+	"version": "0.01",
+	"description": "你是风儿我是沙",
+	"icons": {
+		"16": "public/icons/16.png",
+		"48": "public/icons/48.png",
+		"128": "public/icons/128.png"
+	},
+	"browser_action": {
+		"default_icon": "public/icons/48.png"
+	},
+	"permissions": [
+		"http://*/*",
+		"https://*/*"
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*"
+			],
+			"js": [
+				"public/js/jquery-3.3.1.js",
+				"public/js/main.js"
+			]
+		}
+	]
+}
