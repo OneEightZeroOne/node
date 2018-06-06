@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-3.3.1.js">
+		</script>
+	</head>
+
+	<body>
+		<input id="username" type="text" />
+		<input id="password" type="password" />
+		<button id="submit">登录</button>
+		<script>
+			$("#submit").click(() => {
+				$.ajax({
+					type: "post",
+					url: "http://localhost:54321/login",
+					async: true,
+					data: {
+						username: $("#username").val(),
+						password: $("#password").val()
+					},
+					success(data) {
+						
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

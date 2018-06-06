@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.3.1.js"></script>
+	</head>
+	<body>
+		<div id="text"></div>
+		<script>
+			$.ajax({
+				type:"get",
+				url:"http://localhost:3000/home",
+				data:{
+					name:"ly",
+					age:16
+				},
+				async:true,
+				success(data){
+					console.log(data);
+					$("#text").text(data);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+1.nodejs注册
+
+2.nodejs花椒记录弹幕内容到数据库
+
+
+jquery require.js //客户端
+nodejs express    //中间层
+
+
+java/php mysql    //服务端
+
+3.
+
+[pricing](https://v4.bootcss.com/docs/4.0/examples/pricing/)
+
+
+37 YY(欢聚时代 电玩巴士) 4399
