@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/socket.io.js"></script>
+	</head>
+
+	<body>
+		<input placeholder="用户名" />
+		<textarea></textarea>
+		<button>发送</button>
+		<section>
+			
+		</section>
+		<script>
+			//socket.io.js---->提供io全局变量的方法
+			var socket = io('http://10.3.135.93:3000');
+			socket.on('setMessage', function(data) {
+				Notification.requestPermission();
+				// 点击按钮
+				new Notification(data.username, {
+					body: data.message,
+					icon: 'https://avatars1.githubusercontent.com/u/17243165?s=460&v=4'
+				});
+				console.log(data);
+				document.querySelector("section").innerHTML += `<p>${data.username}: ${data.message}</p>`
+			})
+
+			document.querySelector("button").onclick = function() {
+				var username = document.querySelector("input").value;
+				var message = document.querySelector("textarea").value;
+				//发送用户和聊天信息
+				socket.emit('getMessage', {
+					username: username,
+					message: message
+				});
+			}
+		</script>
+	</body>
+
+</html>

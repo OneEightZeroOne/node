@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/socket.io.js"></script>
+	</head>
+
+	<body>
+		<script>
+			//socket.io.js---->提供io全局变量的方法
+			var socket = io('http://localhost:3000');
+			socket.emit('message', {
+				name: 'laoyao',
+				age: '18'
+			});
+			socket.on('run', function(data) {
+				Notification.requestPermission();
+				// 点击按钮
+				new Notification(data.title, {
+					body: data.body,
+					icon: 'https://avatars1.githubusercontent.com/u/17243165?s=460&v=4'
+				});
+				console.log(data);
+			})
+		</script>
+	</body>
+
+</html>

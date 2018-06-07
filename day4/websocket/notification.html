@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			// 获得权限
+			Notification.requestPermission();
+			// 点击按钮
+			new Notification("Hi，帅哥：", {
+				body: '可以加你为好友吗？',
+				icon: 'https://avatars1.githubusercontent.com/u/17243165?s=460&v=4'
+			});
+		</script>
+	</body>
+
+</html>
