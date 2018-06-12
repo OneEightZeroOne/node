@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--真实DOM-->
+		<div id="demo"></div>
+		<button id="btn">加载更多</button>
+		<script>
+			//数据
+			var obj = {
+				arr: ['a', 'b', 'c']
+			}
+			//监听数据
+			Object.defineProperty(obj, 'arr', {
+				
+				set: function(newValue) {
+					console.log(newValue);
+					nValue = newValue
+					//虚拟DOM 获取值
+					/*var html = `
+						<div>${obj.arr}</div>
+					`*/
+					var html = obj.arr.map(function(item, index) {
+						return `
+							<p>${item}</p>
+						`
+					}).join("");
+					console.log(html);
+					document.querySelector("#demo").innerHTML = html;
+				},
+				get: function() {
+					console.log(nValue);
+					return nValue;
+				}
+			})
+			//设置值 把数组改变
+			obj.arr = ['a', 'b', 'c', 'd'];
+			document.querySelector("#btn").onclick = function() {
+				obj.arr = obj.arr.concat(['e' + Math.random()]);
+			}
+		</script>
+	</body>
+
+</html>

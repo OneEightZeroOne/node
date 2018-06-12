@@ -1,0 +1,7 @@
+(jquery require.js) (express mongodb)
+
+把你们二阶段express nodejs mongodb替代php mysql
+
+(vue webpack)->jquery require.js
+
+socket.io 

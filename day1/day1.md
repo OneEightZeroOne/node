@@ -93,7 +93,7 @@ cheerio 处理html结构的后端版jquery
 mysql 处理mysql数据库
 express 后端框架
 body-parser express处理请求体的模块
-
+mongodb 
 # 自定义模块
 
 自己写的模块需要用一个module.exports导出，再另外一份JS里面require该模块的路径
