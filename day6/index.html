@@ -9,40 +9,53 @@
 	<body>
 		<!--真实DOM-->
 		<div id="demo"></div>
-		<button id="btn">加载更多</button>
 		<script>
 			//数据
 			var obj = {
-				arr: ['a', 'b', 'c']
-			}
-			//监听数据
-			Object.defineProperty(obj, 'arr', {
-				
-				set: function(newValue) {
-					console.log(newValue);
-					nValue = newValue
-					//虚拟DOM 获取值
-					/*var html = `
-						<div>${obj.arr}</div>
-					`*/
-					var html = obj.arr.map(function(item, index) {
-						return `
-							<p>${item}</p>
-						`
-					}).join("");
-					console.log(html);
-					document.querySelector("#demo").innerHTML = html;
-				},
-				get: function() {
-					console.log(nValue);
-					return nValue;
+				name: "winds",
+				age: 18
+			};
+
+			function observe(obj) {
+				//判断对象的自属性是否对象，如果时对象继续执行监听
+				if(!obj || typeof obj !== 'object') {
+					return;
 				}
-			})
-			//设置值 把数组改变
-			obj.arr = ['a', 'b', 'c', 'd'];
-			document.querySelector("#btn").onclick = function() {
-				obj.arr = obj.arr.concat(['e' + Math.random()]);
+				Object.keys(obj).forEach(function(key) {
+					//console.log(key + '=>' + obj[key]);
+					//遍历监听
+					defineProperty(obj, key, obj[key]);
+				})
+			};
+
+			function defineProperty(obj, key, val) {
+				observe(val); //监听子属性，如果子属性也是对象，继续监听
+				Object.defineProperty(obj, key, {
+					set: function(newValue) {
+						console.log('newValue:' + newValue);
+						//设置新值
+						val = newValue;
+						var html = `
+							<p>${obj.name}</p>
+							<p>${obj.age}</p>
+							<input value="${obj.name}" />
+						`;
+						document.querySelector("#demo").innerHTML = html;
+						document.querySelector("input").oninput = function(e) {
+							console.log(e.target.value);
+							obj.name = e.target.value;
+						}
+					},
+					get: function() {
+						console.log("getValue:" + val);
+						//返回val设置对应属性值
+						return val;
+					}
+				})
 			}
+			observe(obj); //对对象遍历并监听每个属性值的变化
+			//设置值 把数组改变
+			obj.name = "wscats";
 		</script>
 	</body>
 
